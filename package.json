@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"cd client && vite\" \"cd server && nodemon server\"",
+    "dev": "concurrently \"cd client && vite\" \"cd server && nodemon --require dotenv/config server.js\"",
+    "client":"cd client && vite",
     "server": "cd server && nodemon --require dotenv/config server.js",
     "build": "cd client && vite build",
     "preview": "cd client && vite preview",

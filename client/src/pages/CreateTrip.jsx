@@ -1,25 +1,38 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import TripsAPI from '../services/tripsapi'
 import './CreateTrip.css'
 
 const CreateTrip = () => {
 
-    const [post, setPost] = useState({id: 0, title: "", description: "", img_url: "", num_days: 0, start_date: "", end_date: "", total_cost: 0.0 })
+    const [post, setPost] = useState({
+        id: 0, 
+        title: "", 
+        description: "", 
+        img_url: "", 
+        num_days: 0, 
+        start_date: "", 
+        end_date: "", 
+        total_cost: 0.0 
+    })
     
     const handleChange = (event) => {
-        const {name, value} = event.target;
-        setPost( (prev) => {
-            return {
-                ...prev,
-                [name]:value,
-            }
-        })
+        setPost({
+            ...post,
+            [event.target.name]: event.target.value,
+        });
+        // const {name, value} = event.target;
+        // setPost( (prev) => {
+        //     return {
+        //         ...prev,
+        //         [name]:value,
+        //     }
+        // })
     }
     
-    const createPost = (event) => {
+    const createPost = async(event) => {
         event.preventDefault();
-
-
-        
+        await TripsAPI.createTrip(post)
+        window.location = '/'
     }
 
 
